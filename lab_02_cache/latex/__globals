@@ -1,0 +1,29 @@
+q1a	length	sum	typeof
+q1b	
+q1c	
+q1d	
+q1e	c	letters	list	rnorm	sample
+unnamed-chunk-2	as.matrix	read.table
+q2a	
+q2b	
+q2c	
+q2d	
+q2e	
+q2f	
+q3a	
+q3b	
+q3c	
+q3d	
+q4a	
+q4b	
+q4c	
+q5a	ncol	pros.dat	vector
+q5b	ncol	pros.dat	vector
+q5c	
+unnamed-chunk-3	all.equal	apply	pros.dat.no.svi	pros.dat.no.svi.sd	pros.dat.svi	pros.dat.svi.sd	sd
+q6a	
+q6b	
+unnamed-chunk-4	pt	v	x
+q6c	
+q7chal1	
+q7chal2	
