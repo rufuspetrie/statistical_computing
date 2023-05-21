@@ -5,18 +5,18 @@ q1c	$	$<-	state.center
 q1d	$	<	all.equal	Center.x	state.df	subset
 q1e	$	&	<	>	state.df
 unnamed-chunk-3	read.table
-q2a	
-q2b	
-unnamed-chunk-4	==	all	c	return	stopifnot	t.test
-q2c	
-q2d	
+q2a	mean	pros.dat	sapply	sd
+q2b	plot	pros.dat	sapply
+unnamed-chunk-4	read.csv
+q2c	==	all	c	lapply	pros.dat	return	stopifnot	t.test	typeof
+q2d	sapply	tests
 unnamed-chunk-5	read.csv
-q3a	
-q3b	
-q3c	
-q3d	
-q3e	
-q3f	
+q3a	class	dim	head	rio
+q3b	$	==	length	max	nrow	rio	table
+q3c	c	rio	sapply	sum
+q3d	$	$<-	==	c	max	rowSums
+q3e	$	==	max	rio	sum	tapply
+q3f	$	$<-	==	max	rownames	sum	tapply	total.by.nat
 q4a	
 q4b	
 q4c	

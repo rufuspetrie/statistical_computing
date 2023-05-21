@@ -7,16 +7,16 @@ q1e	df1
 unnamed-chunk-3	pros.dat
 q2a	
 q2b	
-unnamed-chunk-4	t.test.by.ind
-q2c	
-q2d	
+unnamed-chunk-4	rio
+q2c	t.test.by.ind	tests
+q2d	pvals
 unnamed-chunk-5	rio
 q3a	
 q3b	
 q3c	
-q3d	
-q3e	
-q3f	
+q3d	maxg	maxs	maxt	rio
+q3e	total.by.nat
+q3f	rio	zero_tab	zeroes
 q4a	
 q4b	
 q4c	
