@@ -1,18 +1,13 @@
 ---
-title: "Lab 3: Data Frames and Apply"
-author: "Statistical Computing, 36-350"
-date: "Week of Tuesday September 14, 2021"
+title: 'Lab 3: Data Frames and Apply'
+output: pdf_document
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE, autodep=TRUE, cache.comments=TRUE)
 ```
 
-Name:  
-Andrew ID:  
-Collaborated with:  
-
-This lab is to be done in class (completed outside of class time if need be). You can collaborate with your classmates, but you must identify their names above, and you must submit **your own** lab as an knitted PDF file on Gradescope, by Friday 9pm, this week. 
+Name: Rufus Petrie
 
 **This week's agenda**: getting familiar with data frames; practicing how to use the apply family of functions.
 
@@ -31,32 +26,41 @@ Q1. Basic data frame manipulations
 - **1a.** Add a column to `state.df`, containing the state abbreviations that are stored in the built-in vector `state.abb`. Name this column `Abbr`. You can do this in (at least) two ways: by using a call to `data.frame()`, or by directly defining `state.df$Abbr`. Display the first 3 rows and all 11 columns of the new `state.df`.
 
 ```{r q1a}
-# YOUR CODE GOES HERE
+state.df[,"Abbr"] <- state.abb
+head(state.df, 3)
 ```
 
 - **1b.** Remove the `Region` column from `state.df`. You can do this in (at least) two ways: by using negative indexing, or by directly setting `state.df$Region` to be `NULL`. Display the first 3 rows and all 10 columns of `state.df`.
 
 ```{r q1b}
-# YOUR CODE GOES HERE
+state.df$Region <- NULL
+head(state.df, 3)
 ```
 
 - **1c.** Add two columns to `state.df`, containing the x and y coordinates (longitude and latitude, respectively) of the center of the states, that are stored in the (existing) list `state.center`. Hint: take a look at this list in the console, to see what its elements are named. Name these two columns `Center.x` and `Center.y`. Display the first 3 rows and all 12 columns of `state.df`.
 
 ```{r q1c}
-# YOUR CODE GOES HERE
+state.df$Center.x <- state.center$x
+state.df$Center.y <- state.center$y
+state.df[1:3,]
 ```
 
 - **1d.** Make a new data frame which contains only those states whose longitude is less than -100. Do this in two different ways: using manual indexing, and `subset`(). Check that they are equal to each other, using an appropriate function call.
 
 ```{r q1d}
-# YOUR CODE GOES HERE
+df1 <- state.df[state.df$Center.x < -100,]
+df2 <- subset(state.df, Center.x < -100)
+all.equal(df1, df2)
 ```
 
 - **1e.** Make a new data frame which contains only the states whose longitude is less than -100, and whose murder rate is above 9%. Print this new data frame to the console. Among the states in this new data frame, which has the highest average life expectancy?
 
 ```{r q1e}
-# YOUR CODE GOES HERE
+df1 <- state.df[state.df$Center.x < -100 & state.df$Murder > 9,]
+df1
 ```
+
+Among the states in the new data frame, California has the highest life expectancy.
 
 Prostate cancer data set
 ===
