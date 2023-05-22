@@ -187,7 +187,7 @@ zero_tab <- tapply(rio[rio$zeroes == TRUE, "zeroes"], rio[rio$zeroes == TRUE, "n
 zero_tab[zero_tab == max(zero_tab)]
 ```
 
-Among the countries that had zero medals, China brought the most athletes with 42.
+Among the countries that had zero medals, Chile brought the most athletes with 42.
 
 Q4. Young and old folks
 ===
@@ -197,19 +197,28 @@ Q4. Young and old folks
   Add the `age` variable to the `rio` data frame. variable  Who is the oldest athlete, and how old is he/she? Youngest athlete, and how old is he/she? In the case of ties, here, display all the relevant athletes. 
 
 ```{r q4a}
-# YOUR CODE GOES HERE
+rio$age <- 2016 - as.numeric(substr(rio$date_of_birth, 1, 4))
+rio[rio$age == max(rio$age),]
+rio[rio$age == min(rio$age),]
 ```
+
+There were 2 62 year olds and 8 14 year olds.
 
 - **4b.** Answer the same questions as in the last part, but now only among athletes who won a medal.
 
 ```{r q4b}
-# YOUR CODE GOES HERE
+rio[rio$total > 0 & rio$age == max(rio[rio$total > 0, "age"]),]
+rio[rio$total > 0 & rio$age == min(rio[rio$total > 0, "age"]),]
+
 ```
+
+The oldest and youngest athletes to win medals were 59 and 15 years old respectively.
 
 - **4c.** Using a single call to `tapply()`, answer: how old are the youngest and oldest athletes, for each sport? 
 
 ```{r q4c}
-# YOUR CODE GOES HERE
+minmax <- function(x){c(min = min(x), max = max(x))}
+tapply(rio$age, rio$sport, minmax)
 ```
 
 - **4d.** You should see that your output from `tapply()` in the last part is a list, which is not particularly convenient. Convert this list into a matrix that has one row for each sport, and two columns that display the ages of the youngest and oldest athletes in that sport. The first 3 rows should look like this:
@@ -222,13 +231,9 @@ athletics               16     47
   You'll notice that we set the row names according to the sports, and we also set appropriate column names. Hint: `unlist()` will unravel all the values in a list; and `matrix()`, as you've seen before, can be used to create a matrix from a vector of values. After you've converted the results to a matrix, print it to the console (and make sure its first 3 rows match those displayed above).
   
 ```{r q4d}
-# YOUR CODE GOES HERE
-```
-
-- **Challenge.** Determine the *names* of the youngest and oldest athletes in each sport, along with their ages (so your result should have 4 columns), without using any explicit iteration. In the case of ties, just return one relevant athlete name. (For this part, you can use another package, such as `plyr` or `dplyr` if you want to.)
-
-```{r q4chal}
-# YOUR CODE GOES HERE
+list <- unlist(tapply(rio$age, rio$sport, minmax))
+matrix <- matrix(list, ncol = 2, byrow = TRUE)
+head(matrix, 3)
 ```
 
 Q5. Sport by sport
@@ -237,23 +242,30 @@ Q5. Sport by sport
 - **5a.** Create a new data frame called `sports`, which we'll populate with information about each sporting event at the Summer Olympics. Initially, define `sports` to contain a single variable called `sport` which contains the names of the sporting events in alphabetical order. Then, add a column called `n_participants` which contains the number of participants in each sport. Use one of the apply functions to determine the number of gold medals given out for each sport, and add this as a column called `n_gold`. Using your newly created `sports` data frame, calculate the ratio of the number of gold medals to participants for each sport. Which sport has the highest ratio? Which has the lowest?
 
 ```{r q5a}
-# YOUR CODE GOES HERE
+rio$dummy <- 1
+sports <- data.frame(sports = rownames(table(rio$sport)))
+sports$n_participants <- tapply(rio$dummy, rio$sport, sum)
+sports$n_gold <- tapply(rio$gold, rio$sport, sum)
+sports$gold_ratio <- sports$n_gold / sports$n_participants
+sports[sports$gold_ratio == max(sports$gold_ratio),]
+sports[sports$gold_ratio == min(sports$gold_ratio),]
 ```
+
+Gymnastics had the highest gold ratio percent with 9.2%, and golf had the lowest gold medal percent with 1.6%.
 
 - **5b.** Use one of the apply functions to compute the average weight of the participants in each sport, and add this as a column to `sports` called `ave_weight`. Important: there are missing weights in the data set coded as `NA`, but your column `ave_weight` should ignore these, i.e., it should be itself free of `NA` values. You will have to pass an additional argument to your apply call in order to achieve this. Hint: look at the help file for the `mean()` function; what argument can you set to ignore `NA` values? Once computed, display the average weights along with corresponding sport names, in decreasing order of average weight.
 
 ```{r q5b}
-# YOUR CODE GOES HERE
+sports$ave_weight <- tapply(rio$weight, rio$sport, mean, na.rm = TRUE)
+sports[with(sports, order(ave_weight, decreasing=TRUE)),]
 ```
 
 - **5c.** As in the last part, compute the average weight of athletes in each sport, but now separately for men and women. You should therefore add two new columns, called `ave_weight_men` and `ave_weight_women`, to `sports`. Once computed, display the average weights along with corresponding sports, for men and women, each list sorted in decreasing order of average weight. Are the orderings roughly similar?
 
 ```{r q5c}
-# YOUR CODE GOES HERE
+sports$ave_weight_men <- tapply(rio[rio$sex == "male",]$weight, rio[rio$sex == "male",]$sport, mean, na.rm = TRUE)
+sports$ave_weight_women <- tapply(rio[rio$sex == "female",]$weight, rio[rio$sex == "female",]$sport, mean, na.rm = TRUE)
+sports[with(sports, order(ave_weight_men, ave_weight_women, decreasing=TRUE)),]
 ```
 
-- **Challenge.** Use one of the apply functions to compute the proportion of women among participating athletes in each sport. Use these proportions to recompute the average weight (over all athletes in each sport) from the `ave_weight_men` and `average_weight_women` columns, and define a new column `ave_weight2` accordingly. Does `ave_weight2` differ from `ave_weight`? It should. Explain why. Then show how to recompute the average weight from `ave_weight_men` and `average_weight_women` in a way that exactly recreates `average_weight`.
-
-```{r q5chal}
-# YOUR CODE GOES HERE
-```
+The orderings are roughly similar.
