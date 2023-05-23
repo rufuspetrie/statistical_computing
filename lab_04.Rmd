@@ -1,7 +1,6 @@
 ---
-title: "Lab 4: Purrr and a Bit of Dplyr"
-author: "Statistical Computing, 36-350"
-date: "Week of Tuesday September 21, 2021"
+title: 'Lab 4: Purrr and a Bit of Dplyr'
+output: pdf_document
 ---
 
 ```{r, include=FALSE}
@@ -22,11 +21,7 @@ knit_hooks$set(output = function(x, options) {
 opts_chunk$set(cache=TRUE, autodep=TRUE, cache.comments=TRUE, linewidth=79)
 ```
 
-Name:  
-Andrew ID:  
-Collaborated with:  
-
-This lab is to be done in class (completed outside of class time if need be). You can collaborate with your classmates, but you must identify their names above, and you must submit **your own** lab as an knitted PDF file on Gradescope, by Friday 9pm, this week. 
+Name: Rufus petrie
 
 **This week's agenda**: practicing how to use the map family of functions from `purrr`, and how to perform basic computations on data frames using `dplyr`.
 
@@ -75,13 +70,16 @@ Q1. Warming up with map
    Store each of the results in a different vector and check that they are all identical.
       
 ```{r q1a}
-# YOUR CODE GOES HERE
+# v1 <- 
+# v2 <- 
+# v3 <- 
+# v4 <- 
 ```
 
 - **1b.** Produce an integer vector that represents how many allegiances each character holds. Do this with whichever map function you'd like, and print the result to the console. Then use this (and your a saved object from the last question) to answer: which character holds the most allegiances? The least?
 
 ```{r q1b}
-# YOUR CODE GOES HERE
+
 ```
 
 - **1c.** Run the code below in your console. What does it do?

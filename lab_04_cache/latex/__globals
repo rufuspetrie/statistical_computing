@@ -1,0 +1,31 @@
+unnamed-chunk-2	install.packages	repurrrsive	tidyverse
+unnamed-chunk-3	library
+unnamed-chunk-4	$	[[	class	got_chars	length	names
+q1a	
+q1b	
+unnamed-chunk-5	
+q1c	
+unnamed-chunk-6	do.call	list	rbind
+q1d	
+q1chal	
+q2a	
+q2b	
+q2c	
+q2d	
+q2e	
+unnamed-chunk-7	read.csv
+q3a	
+q3b	
+q3c	
+q3d	
+unnamed-chunk-8	read.table
+q4a	
+q4b	
+q4c	
+q4d	
+q4e	
+q5a	
+q5b	
+q5c	
+q5d	
+q5e	
