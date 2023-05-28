@@ -21,7 +21,7 @@ knit_hooks$set(output = function(x, options) {
 opts_chunk$set(cache=TRUE, autodep=TRUE, cache.comments=TRUE, linewidth=79)
 ```
 
-Name: Rufus petrie
+Name: Rufus Petrie
 
 **This week's agenda**: practicing how to use the map family of functions from `purrr`, and how to perform basic computations on data frames using `dplyr`.
 
